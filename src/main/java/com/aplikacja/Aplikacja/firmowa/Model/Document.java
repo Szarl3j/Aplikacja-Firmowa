@@ -6,7 +6,7 @@ import javax.persistence.*;
 //this class is only for admin
 @Entity
 @Table(name="documents")
-public class DocumentLoader {
+public class Document {
 
     @Id
     @GeneratedValue
@@ -19,10 +19,10 @@ public class DocumentLoader {
     @Column(name = "description")
     private String description;
 
-    public DocumentLoader(){
+    public Document(){
 
     }
-    public DocumentLoader(String title, String description){
+    public Document(String title, String description){
         this.title=title;
         this.description=description;
     }
