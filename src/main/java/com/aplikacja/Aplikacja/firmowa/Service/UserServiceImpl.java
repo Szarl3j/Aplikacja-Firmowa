@@ -3,9 +3,7 @@ package com.aplikacja.Aplikacja.firmowa.Service;
 import com.aplikacja.Aplikacja.firmowa.Model.Role;
 import com.aplikacja.Aplikacja.firmowa.Model.User;
 import com.aplikacja.Aplikacja.firmowa.Repositories.UserRepository;
-import com.aplikacja.Aplikacja.firmowa.Dto.dto.UserRegistrationDto;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 ;
 import org.springframework.stereotype.Service;
 
@@ -55,10 +53,7 @@ public class UserServiceImpl implements UserService {
         this.userRepository.deleteById(id);
     }
 
-    @Override
-    public User save(UserRegistrationDto registrationDto) {
-        return null;
-    }
+
 
 
 //    @Override
@@ -81,10 +76,7 @@ public class UserServiceImpl implements UserService {
 //        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getUser_roles()));
 //    }
 
-    // method that mapps roles with authorities
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
-        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getRole_name())).collect(Collectors.toList());
-    }
+
 
 //    @Override
 //    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {

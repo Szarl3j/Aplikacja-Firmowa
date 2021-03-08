@@ -23,7 +23,7 @@ public class UserMapper {
         Set<String> strRoles = userDto.getRole();
         Set<Role> roles = new HashSet<>();
 
-        checkRolesPresent();
+        checkRoles();
 
         if (strRoles == null) {
             Role userRole = roleRepository.findByName(ERoles.USER_ROLE)
@@ -51,7 +51,7 @@ public class UserMapper {
         }
 
     }
-    private void checkRolesPresent() {
+    private void checkRoles() {
 
         if(!(roleRepository.findByName(ERoles.USER_ROLE).isPresent())) {
             Role role = new Role(ERoles.USER_ROLE);
