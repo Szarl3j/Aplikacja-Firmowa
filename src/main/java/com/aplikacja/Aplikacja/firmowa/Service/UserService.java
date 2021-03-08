@@ -1,7 +1,7 @@
 package com.aplikacja.Aplikacja.firmowa.Service;
 
 import com.aplikacja.Aplikacja.firmowa.Model.User;
-import com.aplikacja.Aplikacja.firmowa.web.dto.UserRegistrationDto;
+import com.aplikacja.Aplikacja.firmowa.Dto.dto.UserRegistrationDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

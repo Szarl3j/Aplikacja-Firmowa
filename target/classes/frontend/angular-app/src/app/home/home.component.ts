@@ -1,33 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs/operators';
+@Component({
+  selector: 'app-home',
+  template: `
+    <section class="hero is-info is-fullheight is-bold">
+    <div class="hero-body">
+    <div class="container">
 
-// @ts-ignore
-import { User } from '../_models';
-// @ts-ignore
-import { UserService } from '../_services';
+      <h1 class="title">Home Page!</h1>
 
-@Component({templateUrl: 'home.component.html'})
-export class HomeComponent implements OnInit {
-  currentUser: User;
-  users: User[] = [];
-
-  constructor(private userService: UserService) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-  }
-
-  ngOnInit() {
-    this.loadAllUsers();
-  }
-
-  deleteUser(id: number) {
-    this.userService.delete(id).pipe(first()).subscribe(() => {
-      this.loadAllUsers()
-    });
-  }
-
-  private loadAllUsers() {
-    this.userService.getAll().pipe(first()).subscribe(users => {
-      this.users = users;
-    });
-  }
-}
+    </div>
+    </div>
+    </section>
+  `,
+  styles: [`
+    .hero {
+      background-image: url('/assets/img/back.jpg') !important;
+      background-size: cover;
+      background-position: center center;
+    }
+  `]
+})

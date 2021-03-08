@@ -37,13 +37,13 @@ public class AdminController {
 //            e.printStackTrace();
 //        }
     //}
-    @GetMapping("{id}/deleteUser")
+    @GetMapping("{user_id}/deleteUser")
     public String deleteUserById(@PathVariable(name = "user_id")long user_id, Model model){
         this.userService.deleteUserById(user_id);
         return "redirect:/user-user-list";
     }
     @GetMapping("/user-list")
-    public String showUserList(@PathVariable(name = "user_id") long user_id, Model model){
+    public String showUserList(Model model){
         List<User> userList= userService.getAllUsers();
         model.addAttribute("userList",userList);
         return "user/user-list";

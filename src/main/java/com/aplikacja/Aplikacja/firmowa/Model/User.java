@@ -1,89 +1,73 @@
 package com.aplikacja.Aplikacja.firmowa.Model;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String firstName;
 
+    @NotBlank
     private String lastName;
 
+    @NotBlank
     private String login;
 
+    @NotBlank
     private String password;
 
+    @NotBlank
+    @Email
     private String email;
+    private LocalDateTime signUpDate;
 
-    @ManyToMany
-    private Set<Role> roles;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Set<Role> role = new HashSet<>();
 
-    private LocalDateTime lastLoginDate;
-
-    public User() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
+    @Builder
+    public User(String firstName, String lastName, String login, String password, String email,
+                Set<Role> role) {
         this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
         this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
         this.password = password;
+        this.email = email;
+        this.role = role;
+        this.signUpDate = LocalDateTime.now();
+
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return firstName.equals(user.firstName) && lastName.equals(user.lastName) &&
+                email.equals(user.email);
     }
 
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, email);
     }
 
-    public LocalDateTime getLastLoginDate() {
-        return lastLoginDate;
-    }
-
-    public void setLastLoginDate(LocalDateTime lastLoginDate) {
-        this.lastLoginDate = lastLoginDate;
-    }
 }

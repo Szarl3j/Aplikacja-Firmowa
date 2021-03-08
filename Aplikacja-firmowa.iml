@@ -139,5 +139,6 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:5.4.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:5.4.2" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.validation:jakarta.validation-api:2.0.2" level="project" />
   </component>
 </module>

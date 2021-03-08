@@ -3,13 +3,12 @@ package com.aplikacja.Aplikacja.firmowa.Service;
 import com.aplikacja.Aplikacja.firmowa.Model.Role;
 import com.aplikacja.Aplikacja.firmowa.Model.User;
 import com.aplikacja.Aplikacja.firmowa.Repositories.UserRepository;
-import com.aplikacja.Aplikacja.firmowa.web.dto.UserRegistrationDto;
+import com.aplikacja.Aplikacja.firmowa.Dto.dto.UserRegistrationDto;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 ;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
