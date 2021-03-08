@@ -51,7 +51,18 @@ public class UserMapper {
         }
 
     }
-}
+    private void checkRolesPresent() {
+
+        if(!(roleRepository.findByName(ERoles.USER_ROLE).isPresent())) {
+            Role role = new Role(ERoles.USER_ROLE);
+            roleRepository.save(role);
+
+        }
+        if(!(roleRepository.findByName(ERoles.ADMIN_ROLE).isPresent())) {
+            Role role = new Role(ERoles.ADMIN_ROLE);
+            roleRepository.save(role);
+        }
+    }
 }
 
 
