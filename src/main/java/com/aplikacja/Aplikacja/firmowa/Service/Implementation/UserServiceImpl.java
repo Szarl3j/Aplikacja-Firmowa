@@ -9,9 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-
-;
 
 @RequiredArgsConstructor
 @Service
@@ -25,11 +22,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User addnewUser(User user) throws UserExistException {
-        if (userRepository.findByFirstNameAndLastName(user.getFirstName(), user.getLastName()
-                .isPresent)) {
+    public User addNewUser(User user) throws UserExistException {
+        if (userRepository.findByFirstNameAndLastName(user.getFirstName(), user.getLastName())
+                .isPresent()) {
             throw new UserExistException(userRepository.findByFirstNameAndLastName(
-                    user.getFirstName(), user.getLastName().get().getId()));
+                    user.getFirstName(), user.getLastName()).get().getId());
         }
         return save(user);
     }
