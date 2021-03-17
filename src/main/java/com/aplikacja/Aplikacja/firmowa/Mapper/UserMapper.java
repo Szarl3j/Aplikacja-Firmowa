@@ -40,17 +40,18 @@ public class UserMapper {
                         break;
                 }
             });
-            return User.builder()
-                    .login(userDto.getLogin())
-                    .firstName(userDto.getFirstName())
-                    .lastName(userDto.getLastName())
-                    .email(userDto.getEmail())
-                    .password(encoder.encode(userDto.getPassword()))
-                    .role(roles)
-                    .build();
-        }
 
-    }
+        }
+        return User.builder()
+                .login(userDto.getLogin())
+                .firstName(userDto.getFirstName())
+                .lastName(userDto.getLastName())
+                .email(userDto.getEmail())
+                .password(encoder.encode(userDto.getPassword()))
+                .role(roles)
+                .build();
+
+        }
     private void checkRoles() {
 
         if(!(roleRepository.findByName(ERoles.USER_ROLE).isPresent())) {

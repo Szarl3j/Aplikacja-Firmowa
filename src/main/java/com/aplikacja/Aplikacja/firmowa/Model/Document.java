@@ -1,5 +1,7 @@
 package com.aplikacja.Aplikacja.firmowa.Model;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 
 
@@ -22,6 +24,7 @@ public class Document {
     public Document(){
 
     }
+    @Builder
     public Document(String title, String description){
         this.title=title;
         this.description=description;

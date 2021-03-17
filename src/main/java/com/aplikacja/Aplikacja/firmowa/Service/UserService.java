@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+
 public interface UserService {
     User save(User user);
     User addNewUser(User user) throws UserExistException;
     void deleteById(Long id) throws UserNotExistException;
-    List<User> getAll();
+    List<User> getAllUsers();
     User findById(Long id) throws UserNotExistException;
 
 
