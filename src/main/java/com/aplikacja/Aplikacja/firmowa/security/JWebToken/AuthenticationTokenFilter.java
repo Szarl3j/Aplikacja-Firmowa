@@ -18,7 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Configuration
+//@Configuration
+// adnotacja configuration tworzy Ci beana a jednoczesnie masz beana tworzacego authenticationTokenFilter
+// w klasie SecurityConfig, wiec albo tu dajesz @Configuration albo tam tworzysz @Bean
 public class AuthenticationTokenFilter extends OncePerRequestFilter {
 
     @Autowired
