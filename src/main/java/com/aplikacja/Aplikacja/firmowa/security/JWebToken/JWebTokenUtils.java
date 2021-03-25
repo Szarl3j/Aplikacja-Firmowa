@@ -14,23 +14,24 @@ import java.util.Date;
 @Component
 public class JWebTokenUtils {
 
-private static final Logger logger= LoggerFactory.getLogger(JWebTokenUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger(JWebTokenUtils.class);
 
-@Value("${Aplikacja-firmowa.app.JwtSecret}")
-private String jwtSecret;
+    @Value("${Aplikacja-firmowa.app.JwtSecret}")
+    private String jwtSecret;
 
-@Value("${Aplikacja-firmowa.app.jwtExpirationMs")
+    @Value("${Aplikacja-firmowa.app.jwtExpirationMs")
     private String jwtExpirationMs;
 
-public String generateJWebToken(Authentication authentication){
-    UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
-    return  Jwts.builder()
-            .setSubject(userPrincipal.getUsername())
-            .setIssuedAt(new Date())
-            .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
-            .signWith(SignatureAlgorithm.HS512, jwtSecret)
-            .compact();
-}
+    public String generateJWebToken(Authentication authentication) {
+        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+        return Jwts.builder()
+                .setSubject(userPrincipal.getUsername())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .compact();
+    }
+
     public String getUserLoginFromJWebToken(String token) {
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
     }
