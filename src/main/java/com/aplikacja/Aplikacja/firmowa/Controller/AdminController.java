@@ -43,19 +43,20 @@ public class AdminController {
     public UserDto getUser(@PathVariable Long id) {
         return userMapper.mapToUserDto(userService.findById(id));
     }
-@GetMapping
-@PreAuthorize("hasRole('ADMIN')")
-public List<UserDto>getAllUsers(){
+
+    @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    public List<UserDto>getAllUsers(){
         return userMapper.mapToUserDtoList(userService.getAllUsers());
-}
-@DeleteMapping("/{id}")
-@PreAuthorize("hasRole('ADMIN')")
+    }
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteUser(@PathVariable Long id){
-userService.deleteById(id);
-}
-@PutMapping("/{id}")
-@PreAuthorize("hasRole('ADMIN')")
-public UserDto updateUserInformation(@PathVariable Long id, @RequestBody UserDto userDto){
+        userService.deleteById(id);
+    }
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public UserDto updateUserInformation(@PathVariable Long id, @RequestBody UserDto userDto){
         User user= userService.findById(id);
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
@@ -63,7 +64,5 @@ public UserDto updateUserInformation(@PathVariable Long id, @RequestBody UserDto
         user.setPassword(userDto.getPassword());
         user.setSignUpDate(userDto.getSignUpDate());
         return userMapper.mapToUserDto(userService.save(user));
-}
-
-
+    }
 }
