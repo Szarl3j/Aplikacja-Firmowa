@@ -16,11 +16,11 @@ public class JWebTokenUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(JWebTokenUtils.class);
 
-
+    //   @Value("${Aplikacja-firmowa.app.JwtSecret}")
     @Value("${aplikacja_dla_firm.app.jwtSecret}")
     private String jwtSecret;
 
-
+    //   @Value("${Aplikacja-firmowa.app.jwtExpirationMs")
     @Value("{aplikacja_dla_firm.app.jwtExpirationMs}")
     private String jwtExpirationMs;
 

@@ -66,7 +66,7 @@ public class UserController {
         }
         userService.addNewUser(userMapper.mapToUser(userDto));
 
-        return ResponseEntity.ok(new ResponseMessage("New account is created successfully"));
+        return ResponseEntity.ok(new ResponseMessage("New admin account is created successfully"));
     }
 
 }
