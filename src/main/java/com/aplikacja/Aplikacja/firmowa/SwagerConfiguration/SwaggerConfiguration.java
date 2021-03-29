@@ -1,4 +1,4 @@
-package com.aplikacja.Aplikacja.firmowa.security.SwagerConfiguration;
+package com.aplikacja.Aplikacja.firmowa.SwagerConfiguration;
 
 import com.google.common.collect.Lists;
 import org.springframework.context.annotation.Bean;
