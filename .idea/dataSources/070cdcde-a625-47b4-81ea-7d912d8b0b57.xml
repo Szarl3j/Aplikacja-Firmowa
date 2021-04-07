@@ -1002,10 +1002,46 @@ SELECT|sys.sys_config
       <DataType>varchar(250)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="306" parent="288" name="PRIMARY">
+    <index id="306" parent="288" name="users_firstName_uindex">
+      <ColNames>firstName</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <index id="307" parent="288" name="users_lastName_uindex">
+      <ColNames>lastName</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <index id="308" parent="288" name="users_login_uindex">
+      <ColNames>login</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <index id="309" parent="288" name="users_email_uindex">
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="310" parent="288" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
+    </key>
+    <key id="311" parent="288" name="users_firstName_uindex">
+      <ColNames>firstName</ColNames>
+      <UnderlyingIndexName>users_firstName_uindex</UnderlyingIndexName>
+    </key>
+    <key id="312" parent="288" name="users_lastName_uindex">
+      <ColNames>lastName</ColNames>
+      <UnderlyingIndexName>users_lastName_uindex</UnderlyingIndexName>
+    </key>
+    <key id="313" parent="288" name="users_login_uindex">
+      <ColNames>login</ColNames>
+      <UnderlyingIndexName>users_login_uindex</UnderlyingIndexName>
+    </key>
+    <key id="314" parent="288" name="users_email_uindex">
+      <ColNames>email</ColNames>
+      <UnderlyingIndexName>users_email_uindex</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>

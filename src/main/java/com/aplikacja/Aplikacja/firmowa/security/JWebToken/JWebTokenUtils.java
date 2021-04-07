@@ -21,8 +21,8 @@ public class JWebTokenUtils {
     private String jwtSecret;
 
     //   @Value("${Aplikacja-firmowa.app.jwtExpirationMs")
-    @Value("{aplikacja_dla_firm.app.jwtExpirationMs}")
-    private String jwtExpirationMs;
+    @Value("86400000")
+    private int jwtExpirationMs;
 
     public String generateJWebToken(Authentication authentication) {
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
