@@ -46,13 +46,13 @@ class CreateAdminAccountTest {
     @Test
     void testCreateAdminAccount() {
         //Given
-        String login = "TestAdminAccount";
-        String password = "testAdminAccountPassword";
+        String login = "Admin";
+        String password = "testAdminAccountPasswordAbc";
         Set<String> roles = new HashSet<>();
         roles.add("admin");
         HttpHeaders headers = new HttpHeaders();
-        HttpEntity<UserDto> entity = new HttpEntity<>(new UserDto(login, "Tomas",
-                "Anders", "testadminmail@dot.com", roles,
+        HttpEntity<UserDto> entity = new HttpEntity<>(new UserDto(login, "Tomasz",
+                "Moch", "testadminmailtomasz@dot.com", roles,
                 password)
                 , headers);
         //When
@@ -67,6 +67,9 @@ class CreateAdminAccountTest {
                 .orElseThrow(() -> new UserNotExistException(0L))
                 .getId());
         removeUser(userId, login, password);
+
+        // konto admina tworzy się bez problemu. Żeby test przechodził za każdym razem trzeba pozmieniać wszystkie dane.
+        // w przeciwnym wypadku pojawia się błąd 400. jednym słowem nowy użytkownik ma unikalne dane.
     }
 
 
@@ -115,5 +118,3 @@ class CreateAdminAccountTest {
         return jwtUtils.generateJWebToken(authentication);
     }
 }
-
-
