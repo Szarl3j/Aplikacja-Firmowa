@@ -30,8 +30,6 @@ public class AdminControllerTest {
     @LocalServerPort
     private int port;
 
-
-
     private final TestRestTemplate restTemplate = new TestRestTemplate();
 
     @Autowired
@@ -44,25 +42,51 @@ public class AdminControllerTest {
     JWebTokenUtils jWebTokenUtils;
 
     @Test
+    void createNewuserAccount(){
+        //Given
+        String login = "TestNewUserAccount";
+        String password = "testUserAccountPassword";
+        Set<String> roles = new HashSet<>();
+        roles.add("user");
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<UserDto> entity = new HttpEntity<>(new UserDto(login, "Test",
+                "User", "testusermail@dot.com", roles,
+                password)
+                , headers);
+        //When
+        ResponseEntity<?> response = restTemplate.exchange(createURLWithPort("admin",""),
+                HttpMethod.POST, entity, Object.class);
+        //Then
+        assertEquals(200, response.getStatusCodeValue());
+        assertNotEquals("New user account created successfully!", response.getBody());
+        //CleanUp
+        String userId = Long.toString(userRepository
+                .findByLogin(login)
+                .orElseThrow(() -> new UserNotExistException(0L))
+                .getId());
+        removeUser(userId, login, password);
+    }
+
+    @Test
     void testGetUser() {
         //Given
-        String username = "loginForGetUser";
-        String name = "Jan";
-        String surname = "Nowak";
+        String login = "loginForGetUser";
+        String firstName = "Jan";
+        String lastName = "Nowak";
         String email = "nowakjan@testjan.com";
         String role = "user";
         String password = "testgetuserpassword";
-        String userId = createUser(username, name, surname, email, role, password);
+        String userId = createUser(login, firstName, lastName, email, role, password);
         //When
-        HttpHeaders headers = createHttpHeaders(username, password);
+        HttpHeaders headers = createHttpHeaders(login, password);
         HttpEntity<UserDto> entity = new HttpEntity<>(null, headers);
-        ResponseEntity<String> response = restTemplate.exchange(createURLWithPort("" + userId),
+        ResponseEntity<String> response = restTemplate.exchange(createURLWithPort("admin","" + userId),
                 HttpMethod.GET, entity, String.class);
         //Then
         assertEquals(200, response.getStatusCodeValue());
-        assertTrue(Objects.requireNonNull(response.getBody()).contains(createUserJsonData(name, surname, email)));
+        assertTrue(Objects.requireNonNull(response.getBody()).contains(createUserJsonData(firstName, lastName, email)));
         //CleanUp
-        removeUser(userId, username, password);
+        removeUser(userId, login, password);
     }
 
     @Test
@@ -85,7 +109,7 @@ public class AdminControllerTest {
         //When
         HttpHeaders headers = createHttpHeaders(user1login, user1password);
         HttpEntity<UserDto> entity = new HttpEntity<>(null, headers);
-        ResponseEntity<String> response = restTemplate.exchange(createURLWithPort(""),
+        ResponseEntity<String> response = restTemplate.exchange(createURLWithPort("admin",""),
                 HttpMethod.GET, entity, String.class);
         //Then
         assertEquals(200, response.getStatusCodeValue());
@@ -111,7 +135,7 @@ public class AdminControllerTest {
         //When
         HttpHeaders headers = createHttpHeaders(login, password);
         HttpEntity<UserDto> entity = new HttpEntity<>(null, headers);
-        ResponseEntity<String> response = restTemplate.exchange(createURLWithPort("" + userId),
+        ResponseEntity<String> response = restTemplate.exchange(createURLWithPort("admin","" + userId),
                 HttpMethod.DELETE, entity, String.class);
         //Then
         assertEquals(200, response.getStatusCodeValue());
@@ -134,7 +158,7 @@ public class AdminControllerTest {
         HttpHeaders headers = createHttpHeaders(login, password);
         HttpEntity<UserDto> entity = new HttpEntity<>(new UserDto(firstName, changedName,
                 lastName, email, roles, password), headers);
-        ResponseEntity<String> response = restTemplate.exchange(createURLWithPort("" + userId),
+        ResponseEntity<String> response = restTemplate.exchange(createURLWithPort("admin","" + userId),
                 HttpMethod.PUT, entity, String.class);
         //Then
         assertEquals(200, response.getStatusCodeValue());
@@ -143,8 +167,8 @@ public class AdminControllerTest {
         removeUser(userId, login, password);
     }
 
-    private String createURLWithPort(String uri) {
-        return "http://localhost:" + port + "/admin" + uri;
+    private String createURLWithPort(,String controller,String uri) {
+        return "http://localhost:" + port + "/" + controller + "/" + uri;
     }
 
     private String createUserJsonData(String firstName, String lastName, String email) {
@@ -157,7 +181,7 @@ public class AdminControllerTest {
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<UserDto> entity = new HttpEntity<>(new UserDto(login, firstName, lastName, email, roles, password),
                 headers);
-        restTemplate.exchange(createURLWithPort("/newuser"),
+        restTemplate.exchange(createURLWithPort("admin",""),
                 HttpMethod.POST, entity, String.class);
         return Long.toString(userRepository
                 .findByLogin(login)
@@ -168,7 +192,7 @@ public class AdminControllerTest {
     private void removeUser(String id, String login, String password) {
         HttpHeaders headers = createHttpHeaders(login, password);
         HttpEntity<UserDto> entity = new HttpEntity<>(null, headers);
-        restTemplate.exchange(createURLWithPort("" + id),
+        restTemplate.exchange(createURLWithPort("admin","" + id),
                 HttpMethod.DELETE, entity, Object.class);
     }
 
