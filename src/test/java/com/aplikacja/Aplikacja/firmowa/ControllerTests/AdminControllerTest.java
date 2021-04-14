@@ -167,7 +167,7 @@ public class AdminControllerTest {
         removeUser(userId, login, password);
     }
 
-    private String createURLWithPort(,String controller,String uri) {
+    private String createURLWithPort(String controller,String uri) {
         return "http://localhost:" + port + "/" + controller + "/" + uri;
     }
 
