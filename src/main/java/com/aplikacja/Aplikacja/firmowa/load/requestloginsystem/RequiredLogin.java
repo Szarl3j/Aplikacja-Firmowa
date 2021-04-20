@@ -1,4 +1,4 @@
-package com.aplikacja.Aplikacja.firmowa.Load.requestloginsystem;
+package com.aplikacja.Aplikacja.firmowa.load.requestloginsystem;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,7 +1,7 @@
 package com.aplikacja.Aplikacja.firmowa.controller;
 
 import com.aplikacja.Aplikacja.firmowa.dto.UserDto;
-import com.aplikacja.Aplikacja.firmowa.Load.requestloginsystem.response.ResponseMessage;
+import com.aplikacja.Aplikacja.firmowa.load.requestloginsystem.response.ResponseMessage;
 import com.aplikacja.Aplikacja.firmowa.mapper.UserMapper;
 import com.aplikacja.Aplikacja.firmowa.model.User;
 import com.aplikacja.Aplikacja.firmowa.repositories.UserRepository;

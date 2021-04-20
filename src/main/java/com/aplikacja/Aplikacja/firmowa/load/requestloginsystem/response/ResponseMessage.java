@@ -1,4 +1,4 @@
-package com.aplikacja.Aplikacja.firmowa.Load.requestloginsystem.response;
+package com.aplikacja.Aplikacja.firmowa.load.requestloginsystem.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
