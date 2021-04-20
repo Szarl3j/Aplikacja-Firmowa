@@ -1,4 +1,4 @@
-package com.aplikacja.Aplikacja.firmowa.ControllerTests;
+package com.aplikacja.Aplikacja.firmowa.controllertest;
 
 import com.aplikacja.Aplikacja.firmowa.dto.DocumentDto;
 import com.aplikacja.Aplikacja.firmowa.dto.UserDto;
