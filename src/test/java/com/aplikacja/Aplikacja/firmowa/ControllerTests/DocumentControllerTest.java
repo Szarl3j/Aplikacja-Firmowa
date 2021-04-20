@@ -1,26 +1,21 @@
 package com.aplikacja.Aplikacja.firmowa.ControllerTests;
 
-import com.aplikacja.Aplikacja.firmowa.Dto.DocumentDto;
-import com.aplikacja.Aplikacja.firmowa.Dto.UserDto;
-import com.aplikacja.Aplikacja.firmowa.Repositories.UserRepository;
-import com.aplikacja.Aplikacja.firmowa.Service.exceptions.UserNotExistException;
-import com.aplikacja.Aplikacja.firmowa.security.JWebToken.JWebTokenUtils;
+import com.aplikacja.Aplikacja.firmowa.dto.DocumentDto;
+import com.aplikacja.Aplikacja.firmowa.dto.UserDto;
+import com.aplikacja.Aplikacja.firmowa.repositories.UserRepository;
+import com.aplikacja.Aplikacja.firmowa.services.exceptions.UserNotExistException;
+import com.aplikacja.Aplikacja.firmowa.security.jwebtoken.JWebTokenUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.*;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -29,6 +24,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@WithMockUser(username = "Admin", password ="testAdminAccountPasswordAbc", roles = "ADMIN_ROLE")
 public class DocumentControllerTest {
 
     @LocalServerPort
@@ -46,7 +42,7 @@ public class DocumentControllerTest {
     JWebTokenUtils jWebTokenUtils;
 
     @Test
-    void testAddDocument() {
+    void testAddDocument() throws Exception {
         //Given
         String login = "usernameA";
         String password = "passwordA";
@@ -68,7 +64,7 @@ public class DocumentControllerTest {
     }
 
     @Test
-    void testGetDocument() {
+    void testGetDocument() throws Exception{
         //Given
         String login = "loginUser2";
         String password = "passwordUser2";
@@ -90,7 +86,7 @@ public class DocumentControllerTest {
     }
 
     @Test
-    void testGetAllDocuments() {
+    void testGetAllDocuments() throws Exception {
         //Given
         String login = "loginuser3";
         String password = "passworduser3";
@@ -118,7 +114,7 @@ public class DocumentControllerTest {
     }
 
     @Test
-    void testDeleteDocument() {
+    void testDeleteDocument() throws Exception{
         //Given
         String login = "usernameD";
         String password = "passwordD";
@@ -136,7 +132,7 @@ public class DocumentControllerTest {
     }
 
     @Test
-    void testUpdateDocumentData() {
+    void testUpdateDocumentData() throws Exception {
         //Given
         String login = "username5";
         String password = "password5";

@@ -1,6 +1,6 @@
 package com.aplikacja.Aplikacja.firmowa.security.service;
 
-import com.aplikacja.Aplikacja.firmowa.Model.User;
+import com.aplikacja.Aplikacja.firmowa.model.User;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;

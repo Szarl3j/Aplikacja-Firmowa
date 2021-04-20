@@ -1,7 +1,7 @@
 package com.aplikacja.Aplikacja.firmowa.security;
 
-import com.aplikacja.Aplikacja.firmowa.security.JWebToken.AuthenticationEntryPointJWebToken;
-import com.aplikacja.Aplikacja.firmowa.security.JWebToken.AuthenticationTokenFilter;
+import com.aplikacja.Aplikacja.firmowa.security.jwebtoken.AuthenticationEntryPointJWebToken;
+import com.aplikacja.Aplikacja.firmowa.security.jwebtoken.AuthenticationTokenFilter;
 import com.aplikacja.Aplikacja.firmowa.security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

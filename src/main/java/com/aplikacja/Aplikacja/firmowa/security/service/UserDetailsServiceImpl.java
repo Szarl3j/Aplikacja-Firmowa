@@ -1,7 +1,7 @@
 package com.aplikacja.Aplikacja.firmowa.security.service;
 
-import com.aplikacja.Aplikacja.firmowa.Model.User;
-import com.aplikacja.Aplikacja.firmowa.Repositories.UserRepository;
+import com.aplikacja.Aplikacja.firmowa.model.User;
+import com.aplikacja.Aplikacja.firmowa.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

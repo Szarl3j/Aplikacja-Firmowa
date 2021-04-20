@@ -1,14 +1,12 @@
 package com.aplikacja.Aplikacja.firmowa.ControllerTests;
 
 import org.springframework.boot.test.context.SpringBootTest;
-import com.aplikacja.Aplikacja.firmowa.Dto.UserDto;
-import com.aplikacja.Aplikacja.firmowa.Repositories.UserRepository;
-import com.aplikacja.Aplikacja.firmowa.Service.exceptions.UserNotExistException;
-import com.aplikacja.Aplikacja.firmowa.security.JWebToken.JWebTokenUtils;
+import com.aplikacja.Aplikacja.firmowa.dto.UserDto;
+import com.aplikacja.Aplikacja.firmowa.repositories.UserRepository;
+import com.aplikacja.Aplikacja.firmowa.services.exceptions.UserNotExistException;
+import com.aplikacja.Aplikacja.firmowa.security.jwebtoken.JWebTokenUtils;
 import org.junit.jupiter.api.*;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.*;
@@ -16,7 +14,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -25,6 +23,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@WithMockUser(username = "Admin", password ="testAdminAccountPasswordAbc", roles = "ADMIN_ROLE")
 public class AdminControllerTest {
 
     @LocalServerPort
@@ -42,7 +41,7 @@ public class AdminControllerTest {
     JWebTokenUtils jWebTokenUtils;
 
     @Test
-    void createNewuserAccount(){
+    void createNewuserAccount()throws Exception{
         //Given
         String login = "TestNewUserAccount";
         String password = "testUserAccountPassword";
@@ -68,7 +67,7 @@ public class AdminControllerTest {
     }
 
     @Test
-    void testGetUser() {
+    void testGetUser()throws Exception {
         //Given
         String login = "loginForGetUser";
         String firstName = "Jan";
@@ -90,7 +89,7 @@ public class AdminControllerTest {
     }
 
     @Test
-    void testGetAll() {
+    void testGetAll() throws Exception {
         //Given
         String user1login = "testgetalllogin1";
         String user1firstName = "Adam";
@@ -123,7 +122,7 @@ public class AdminControllerTest {
     }
 
     @Test
-    void testDeleteUserAccount() {
+    void testDeleteUserAccount() throws Exception {
         //Given
         String login = "sweetcat";
         String firstName = "Hannah";
@@ -142,7 +141,7 @@ public class AdminControllerTest {
     }
 
     @Test
-    void testUpdateUserData() {
+    void testUpdateUserData() throws Exception{
         //Given
         String login = "paulsLogin";
         String firstName = "Paul";

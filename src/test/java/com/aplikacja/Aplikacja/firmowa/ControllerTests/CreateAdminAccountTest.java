@@ -1,11 +1,10 @@
 package com.aplikacja.Aplikacja.firmowa.ControllerTests;
 
-import com.aplikacja.Aplikacja.firmowa.Dto.UserDto;
-import com.aplikacja.Aplikacja.firmowa.Repositories.UserRepository;
-import com.aplikacja.Aplikacja.firmowa.Service.exceptions.UserNotExistException;
-import com.aplikacja.Aplikacja.firmowa.security.JWebToken.JWebTokenUtils;
+import com.aplikacja.Aplikacja.firmowa.dto.UserDto;
+import com.aplikacja.Aplikacja.firmowa.repositories.UserRepository;
+import com.aplikacja.Aplikacja.firmowa.services.exceptions.UserNotExistException;
+import com.aplikacja.Aplikacja.firmowa.security.jwebtoken.JWebTokenUtils;
 import org.junit.jupiter.api.*;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -15,10 +14,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
