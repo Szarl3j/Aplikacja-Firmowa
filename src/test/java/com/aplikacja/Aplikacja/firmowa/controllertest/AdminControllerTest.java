@@ -23,7 +23,6 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@WithMockUser(username = "Admin", password ="testAdminAccountPasswordAbc", roles = "ADMIN_ROLE")
 public class AdminControllerTest {
 
     @LocalServerPort
